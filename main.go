@@ -18,10 +18,10 @@ func main() {
   ticker := time.NewTicker(Duration * time.Second)
 
   for _ = range ticker.C {
+    fmt.Println("Timer's ticking ... ", time.Now())
     go func() {
       var stream bytes.Buffer
 
-      fmt.Println("Timers ticking ... ", time.Now())
       id := client.Run("test", "busybox", []string{"echo", "-n", "Hello world!"})
 
       client.Wait(id)
