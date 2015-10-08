@@ -60,8 +60,8 @@ func (c *Docker) Stop(id string) {
   _ = c.client.StopContainer(id, 5)
 }
 
-func (c *Docker) Remove(id string, force bool) {
-  _ = c.client.RemoveContainer(dockerApi.RemoveContainerOptions{ ID: id, Force: force})
+func (c *Docker) Remove(id string, force bool) error {
+  return c.client.RemoveContainer(dockerApi.RemoveContainerOptions{ ID: id, Force: force})
 }
 
 func (c *Docker) createContainer(name string, image string, cmd []string) (container *dockerApi.Container, err error) {
